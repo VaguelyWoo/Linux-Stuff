@@ -18,21 +18,9 @@ super + F8
 super + F10
     spotify
 
-#Rofi Fullscreen
-super + F11
-    rofi -show drun -fullscreen
-
-#Rofi
-super + d
-    rofi -show drun
-
 #Htop
 super + h
     urxvt 'htop task manager' -e htop
-
-#Rofi theme selector
-super + r
-    rofi-theme-selector
 
 #Pavucontrol
 super + v
@@ -93,6 +81,11 @@ super + shift + s
 super + shift + r
 	~/.config/bspwm/bspwmrc
 
+
+# Quit/Restart/ bspwm
+ctrl + alt + {q,r}
+	bspc {quit,wm -r}
+
 #################################################################
 # Settings
 #################################################################
@@ -112,6 +105,10 @@ ctrl + alt + u
 #Picom Toggle
 ctrl + alt + o
     ~/.config/bspwm/scripts/picom-toggle.sh
+
+
+
+
 
 ###########################################################
 # Wallpaper
@@ -177,6 +174,18 @@ alt + shift + u
 ctrl + alt + r
   rofi-theme-selector
 
+#Rofi Fullscreen
+super + F11
+    rofi -show drun -fullscreen
+
+#Rofi
+super + d
+    rofi -show drun
+
+#Rofi theme selector
+super + r
+    rofi-theme-selector
+
 ###########################################################
 # Xfce
 ###
@@ -185,26 +194,9 @@ ctrl + alt + r
 ctrl + alt + a
     xfce4-appfinder
 
-
-#Xfce appfinder
-alt + F2
-    xfce4-appfinder --collapsed
-
-#Xfce4-appfinder
-alt + F3
-    xfce4-appfinder
-
-#Xlunch app launcher
-#alt + F5
-#    xlunch --config ~/.config/xlunch/default.conf --input ~/.config/xlunch/entries.dsv   
-
 #Xcfe4-TaskManager
 ctrl + shift + Escape
     xfce4-taskmanager
-
-#xfce4-terminal dropdown
-F12
-    xfce4-terminal --drop-down
 
 ###########################################################
 # polybar
@@ -214,63 +206,40 @@ F12
 super + y
     polybar-msg cmd toggle
 
-
-#################################################################
-# Arco Specifics
-#################################################################
-
-#arcolinux-logout
-super + x
-    arcolinux-logout
-
-#arcolinux-welcome-app
-ctrl + alt + w
-     arcolinux-welcome-app
-
-#arcolinux-tweak-tool
-ctrl + alt + e
-    arcolinux-tweak-tool
-
-#arcolinux-logout
-ctrl + alt + k
-     arcolinux-logout
-
-#arcolinux-logout
-ctrl + alt + l
-    arcolinux-logout
-
-
 #################################################################
 #     SCREENSHOTS
 #################################################################
 
-#Scrot
-Print
-    scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
-
 #screeenshooter
 ctrl + Print
      xfce4-screenshooter
-
-#Gnome-Screenshot
-ctrl + shift + Print
-     gnome-screenshot -i
 
 #################################################################
 #     MULTIMEDIA KEYS
 #################################################################
 
 #Raises volume
-XF86AudioRaiseVolume
+#XF86AudioRaiseVolume
     amixer set Master 10%+
 
 #Lowers volume
-XF86AudioLowerVolume
+#XF86AudioLowerVolume
     amixer set Master 10%-
 
 #Mute
-XF86AudioMute
-    amixer -D pulse set Master 1+ toggle
+#XF86AudioMute
+#    amixer -D pulse set Master 1+ toggle
+
+##New Volume
+
+# Volume control
+XF86Audio{RaiseVolume,LowerVolume}
+	volume{-up,-down}
+
+#XF86AudioMute
+	amixer set Master toggle
+
+
 
 #Playerctl works for Pragha, Spotify and others
 #Delete the line for playerctl if you want to use mpc
@@ -281,29 +250,45 @@ XF86AudioMute
 #mpc prev
 #mpc stop
 
+#Old
 #PLAY
-XF86AudioPlay
-    playerctl play-pause
+#XF86AudioPlay
+#    playerctl play-pause
 
 #Next
-XF86AudioNext
-    playerctl next
+#XF86AudioNext
+#    playerctl next
 
 #previous
-XF86AudioPrev
-    playerctl previous
+#XF86AudioPrev
+#    playerctl previous
 
 #Stop
-XF86AudioStop
-    playerctl stop
+#XF86AudioStop
+#    playerctl stop
 
+
+##New
+
+# Music control
+XF86Audio{Next,Prev,Play,Stop}
+	playerctl {next,prev,toggle,stop}
+
+##Old
 #Brightness up
-XF86MonBrightnessUp
-    xbacklight -inc 10
+#XF86MonBrightnessUp
+#    xbacklight -inc 10
 
 #Brightness down
-XF86MonBrightnessDown
-    xbacklight -dec 10
+#XF86MonBrightnessDown
+#    xbacklight -dec 10
+
+##New Minimal
+# Brighness control
+XF86MonBrightness{Up,Down}
+	backlight{-up,-down}
+
+
 
 
 
