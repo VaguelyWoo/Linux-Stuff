@@ -186,6 +186,26 @@ super + d
 super + r
     rofi-theme-selector
 
+
+##---------- Rofi Launcher & Menus ----------##
+
+# Rofi App Launcher
+alt + F1
+	sh ~/.config/bspwm/rofi/bin/launcher
+
+# Rofi Network Menu
+super + n
+	nmd
+
+# Rofi Menus
+super + {x,t}
+	sh ~/.config/bspwm/rofi/bin/{powermenu,asroot}
+
+ctrl + alt + {s,n,t}
+	sh ~/.config/bspwm/rofi/bin/{screenshot,network,themes}
+
+
+
 ###########################################################
 # Xfce
 ###
@@ -220,24 +240,30 @@ ctrl + Print
 
 #Raises volume
 #XF86AudioRaiseVolume
-    amixer set Master 10%+
+#    amixer set Master 3%+
 
 #Lowers volume
 #XF86AudioLowerVolume
-    amixer set Master 10%-
+#    amixer set Master 3%-
 
 #Mute
-#XF86AudioMute
-#    amixer -D pulse set Master 1+ toggle
+XF86AudioMute
+    amixer -D pulse set Master 1+ toggle
 
-##New Volume
+
+###########################################################
+# New Volume
+###
 
 # Volume control
 XF86Audio{RaiseVolume,LowerVolume}
-	volume{-up,-down}
+	pactl set-sink-volume @DEFAULT_SINK@ {+3%,-3%}
 
-#XF86AudioMute
-	amixer set Master toggle
+# Mic volume
+# Volume control
+alt + XF86Audio{RaiseVolume,LowerVolume}
+	pactl set-source-volume @DEFAULT_SOURCE@ {+3%,-3%}
+
 
 
 
@@ -347,10 +373,6 @@ super + ctrl + space
 #kill
 super + shift + q
 	bspc node -c
-
-#Logout
-#super + shift + x
-#	bspc quit
 
 # Focus/swap windows by direction
 super + {_,shift + }{h,j,k,l}
