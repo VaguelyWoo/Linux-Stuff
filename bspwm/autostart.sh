@@ -31,7 +31,7 @@ feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
 
 # Kill if already running
 #killall -9 sxhkd xsettingsd dunst xfce4-power-manager
-
+~.config/bspwm/scripts/nvidia.sh
 
 dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
 xsetroot -cursor_name left_ptr &
